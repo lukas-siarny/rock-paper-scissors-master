@@ -212,11 +212,6 @@ const modalRulesDiv = document.querySelector(".modal-rules");
 
 btnRules.addEventListener("click", () => {
 	modalDiv.classList.add("display-flex");
-	/*if(modalDiv.classList.contains("modal-background")){
-		modalDiv.classList.remove("modal-background")
-	}*/
-
-	if(modalRulesDiv)
 	setTimeout(() => {
 		modalDiv.classList.add("modal-background");
 		modalRulesDiv.classList.add("modal-rules-translate");
