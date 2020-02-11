@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:600,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Frontend Mentor | Rock, Paper, Scissors</title>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+<body>
+  <section class="modal">
+    <div class="modal-rules">
+      <h2>Rules</h2>
+      <div class="btn-close">
+        <div class="line"></div>
+      </div>
+      <img src="images/image-rules-bonus.svg">
+    </div>
+  </section>
+  
+  <div class="wrapper">
+    <header>
+      <div class="container header-wrapper">
+        <div class="logo">
+          <img src="images/logo-bonus.svg" class="logo">
+        </div>
+        <div class="score">
+          <p>Score</p>
+          <p class="count">0</p>
+        </div>
+      </div>
+    </header>
+    
+    <main>
+      <div class="container">
+        <div class="symbols">
+         
+          <div class="symbol-outer-circle symbol-scissors symbol-selection scissors-selection" title="Scissors">
+            <div class="symbol-wrapper">
+              <div class="symbol-inner-circle">
+                <img src="images/icon-scissors.svg">
+              </div>  
+            </div>  
+          </div>
+          
+          <div class="symbol-outer-circle symbol-selection symbol-spock spock-selection" title="Spock">
+            <div class="symbol-wrapper">
+              <div class="symbol-inner-circle">
+                <img src="images/icon-spock.svg">
+              </div>   
+            </div>  
+          </div>
+
+          <div class="symbol-outer-circle symbol-selection symbol-paper paper-selection" title="Paper">
+            <div class="symbol-wrapper">
+              <div class="symbol-inner-circle">
+                <img src="images/icon-paper.svg">
+              </div>   
+            </div>  
+          </div>     
+
+          <div class="symbol-outer-circle symbol-selection symbol-lizard lizard-selection" title="Lizard">
+            <div class="symbol-wrapper">
+              <div class="symbol-inner-circle">
+               <img src="images/icon-lizard.svg">
+              </div>  
+            </div>  
+          </div>    
+
+          <div class="symbol-outer-circle symbol-selection symbol-rock rock-selection" title="Rock">
+            <div class="symbol-wrapper">
+              <div class="symbol-inner-circle">
+                <img src="images/icon-rock.svg">
+              </div>  
+            </div>  
+          </div>   
+
+        </div>
+      </div>
+
+        <div class="picked">
+          <div class="pick-wrapper wrapper-player">
+            <h2>You Picked</h2>
+           
+            <!--<div class="pick pick-player">
+              <div class="symbol-outer-circle symbol-picked symbol-scissors" title="Scissors">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="symbol-wrapper">
+                  <div class="symbol-text">Scissors</div>
+                  <div class="symbol-inner-circle">
+                    <img src="images/icon-scissors.svg">
+                  </div>  
+                </div> 
+              </div>  
+            </div>-->
+
+          </div>  
+
+          <div class="result">
+            <h1>You lose</h1>
+            <button class="btn btn-playagain">Play again</button>
+          </div>
+
+          <div class="pick-wrapper wrapper-computer">
+            <h2>The House Picked</h2>
+            
+            <div class="pick pick-default">
+              <div class="symbol-outer-circle symbol-picked">
+                <div class="symbol-default"></div>
+              </div> 
+            </div>
+
+            <!--<div class="pick pick-computer">
+              <div class="symbol-outer-circle symbol-picked symbol-rock" title="Rock">
+                <div class="symbol-wrapper">
+                  <div class="symbol-inner-circle">
+                    <img src="images/icon-rock.svg">
+                  </div>  
+                </div> 
+              </div>
+            </div>-->           
+              
+          </div>  
+        </div>
+      <!--</div>-->  
+    </main>
+    <div class="bottom"></div>
+  </div>  
+    <footer>
+      <div class="footer-wrapper">
+        <div class="attribution">
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+          Coded by <a href="#">Your Name Here</a>.
+        </div>
+        <button class="btn btn-rules">Rules</button>
+      </div>
+    </footer>   
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
