@@ -1,16 +1,14 @@
-const symbols = document.querySelectorAll(".symbol-selection");
-const symbolsDiv = document.querySelector(".symbols");
-const pickedDiv = document.querySelector(".picked");
-const pickPlayer = document.querySelector(".pick-player");
-const pickComputer = document.querySelector(".pick-comupter");
-const symbolDefault = document.querySelector(".symbol-default");
-const pickDefault = document.querySelector(".pick-default");
-const resultDiv = document.querySelector(".result");
+const symbols = document.querySelectorAll(".main__symbols .symbol");
+const symbolsDiv = document.querySelector(".main__symbols-wrapper");
+const pickedDiv = document.querySelector(".main__picked-wrapper");
+const pickPlayer = document.querySelector(".pick--player");
+const pickComputer = document.querySelector(".pick--computer");
+const symbolWaiting = document.querySelector(".symbol__waiting");
+const resultDiv = document.querySelector(".main__result");
 const title = resultDiv.querySelector("h1");
-const btnPlayAgain = document.querySelector(".btn-playagain");
-const containerMain = document.querySelector("main .container");
+const btnPlayAgain = document.querySelector(".btn--playagain");
 
-const score = document.querySelector(".count");
+const score = document.querySelector(".header__score-count");
 let scoreCount = 0;
 
 
@@ -19,35 +17,31 @@ symbols.forEach(el => {
 });	
 
 function playGame(e){
-	containerMain.classList.add("display-none");
-	/*symbolsDiv.classList.add("display-none");*/
-	symbolsDiv.classList.add("symbols-transform");
+	symbolsDiv.classList.add("display-none");
 	pickedDiv.classList.add("display-flex");
 
 	const playerChoice = getPlayerChoice(e);
 	const computerChoice = getComputerChoice();
 
 	const playerSymbol = createSymbol(playerChoice, "player");
-	insertAfter(playerSymbol, document.querySelector(".wrapper-player h2"));
+	document.querySelector(".pick--player .symbol__wrapper").appendChild(playerSymbol);
 	renderSymbolEffects(playerSymbol);
 	
 	setTimeout(()=> {
-		symbolDefault.classList.add("symbol-default-animation");
+		symbolWaiting.classList.add("symbol__waiting-animation");
 		
 		setTimeout(()=> {
-			symbolDefault.classList.remove("symbol-default-animation");
+			symbolWaiting.classList.remove("symbol__waiting-animation");
 			const computerSymbol = createSymbol(computerChoice, "computer");
-			insertAfter(computerSymbol, document.querySelector(".wrapper-computer .pick"));
+			insertAfter(computerSymbol, symbolWaiting);
 			
 			setTimeout(() => {
 				renderSymbolEffects(computerSymbol, true);
 				
 				setTimeout(() => {
-					pickDefault.classList.add("display-none");
-					playerSymbol.classList.add("translateX-neg50");
-					pickedDiv.querySelector(".wrapper-player h2").classList.add("translateX-neg50");
-					computerSymbol.classList.add("translateX-50");
-					pickedDiv.querySelector(".wrapper-computer h2").classList.add("translateX-50");
+					symbolWaiting.classList.add("display-none");
+					pickPlayer.classList.add("translateX-neg50");
+					pickComputer.classList.add("translateX-50");
 					
 					setTimeout(()=>{
 						getResult(playerChoice, computerChoice);
@@ -63,11 +57,11 @@ function playGame(e){
 function getPlayerChoice(e){
 	if (e.target.hasAttribute("src") === true){
 		return e.target.parentNode.parentNode.parentNode.title;
-	} else if (e.target.classList.contains("symbol-inner-circle")){
+	} else if (e.target.classList.contains("symbol__inner-circle")){
 		return e.target.parentNode.parentNode.title;
-	} else if (e.target.classList.contains("symbol-wrapper")){
+	} else if (e.target.classList.contains("symbol__outer-circle")){
 		return e.target.parentNode.title;
-	} else if (e.target.classList.contains("symbol-selection")){
+	} else if (e.target.classList.contains("symbol")){
 		return e.target.title;
 	};
 }
@@ -124,25 +118,27 @@ function getResult(playerChoice, computerChoice){
 
 
 function createSymbol(symbolName, player){
-	const divPick = document.createElement("div");
-	divPick.className = `pick pick-${player}`;
+	const divSymbol = document.createElement("div");
+	divSymbol.className = `symbol symbol--${symbolName.toLowerCase()} symbol--picked symbol--${player}-position`;
+	
 	const divOuterCircle = document.createElement("div");
-	divOuterCircle.className = `symbol-outer-circle symbol-picked symbol-${symbolName.toLowerCase()}`;
-	const divWrapper = document.createElement("div");
-	divWrapper.className = "symbol-wrapper";
+	divOuterCircle.className = `symbol__outer-circle`;
+	
 	const divSymbolText = document.createElement("div");
-	divSymbolText.className = "symbol-text";
-	divSymbolText.innerHTML = symbolName.toUpperCase();
+	divSymbolText.className = "symbol__text";
+	divSymbolText.innerHTML = symbolName;
+	
 	const divInnerCirlce = document.createElement("div");
-	divInnerCirlce.className = "symbol-inner-circle";
+	divInnerCirlce.className = "symbol__inner-circle";
+	
 	const img = document.createElement("img");
 	img.setAttribute("src", `images/icon-${symbolName.toLowerCase()}.svg`); 
+	
 	divInnerCirlce.appendChild(img);
-	divWrapper.appendChild(divSymbolText);
-	divWrapper.appendChild(divInnerCirlce);
-	divOuterCircle.appendChild(divWrapper);
-	divPick.appendChild(divOuterCircle);
-	return divPick;	
+	divOuterCircle.appendChild(divInnerCirlce);
+	divSymbol.appendChild(divOuterCircle);
+	divSymbol.appendChild(divSymbolText);
+	return divSymbol;	
 };
 
 function insertAfter(newNode, referenceNode) {
@@ -152,76 +148,92 @@ function insertAfter(newNode, referenceNode) {
 function renderSymbolEffects(symbol, computer){
 	setTimeout(() => {
 		if(computer === true){
-			symbol.classList.add("left0");
+			symbol.classList.add("reset-position");
 		} else{
-			symbol.classList.add("right0");
+			symbol.classList.add("reset-position");
 		}
-		symbol.querySelector(".symbol-picked").classList.add("symbol-rotation");
 	}, 50);
 	setTimeout(() => {
-		symbol.querySelector(".symbol-text").classList.add("text-scale-animation");
-		symbol.classList.add("get-above");
+		symbol.querySelector(".symbol__text").classList.add("symbol__text-animation");
+		if(computer === true){
+			pickComputer.classList.add("get-above");
+		} else{
+			pickPlayer.classList.add("get-above");
+		}
 	}, 250);
 	setTimeout(() => {
-		symbol.querySelector(".symbol-text").remove();
-		symbol.classList.remove("get-above");
+		symbol.querySelector(".symbol__text").remove();
 	}, 1250);
 };
 
 function renderWinnerEffect(player){
 
-	const parentNode = document.querySelector(`.pick-${player} .symbol-picked`);
-	const referenceNode = parentNode.querySelector(".symbol-wrapper");
-	
+	const parentNode = document.querySelector(`.pick--${player} .symbol--picked`);
+	const referenceNode = parentNode.querySelector(".symbol__outer-circle");
+
+	document.querySelectorAll(".main__pick").forEach(el => {
+		el.classList.add("get-below");
+	});
+
 	const circle1 = document.createElement("div");
-	circle1.classList.add("circle1");
+	circle1.classList.add("symbol__winner-circle-1");
 	parentNode.insertBefore(circle1, referenceNode);
 	
 	const circle2 = document.createElement("div");
-	circle2.classList.add("circle2");
+	circle2.classList.add("symbol__winner-circle-2");
 	parentNode.insertBefore(circle2, referenceNode);
 	
 	const circle3 = document.createElement("div");
-	circle3.classList.add("circle3");
+	circle3.classList.add("symbol__winner-circle-3");
 	parentNode.insertBefore(circle3, referenceNode);
 }
 
 function resetGame(){
 	pickedDiv.classList.remove("display-flex");
-	containerMain.classList.remove("display-none");
-	/*symbolsDiv.classList.remove("display-none");*/
+	symbolsDiv.classList.remove("display-none");
+
 	setTimeout(() => {
-		symbolsDiv.classList.add("symbols-transform");
+		symbolsDiv.classList.add("main__symbols--transform");
 	}, 0)
 
-	pickDefault.classList.remove("display-none");
-	pickedDiv.querySelector(".wrapper-player h2").classList.remove("translateX-neg50");
-	pickedDiv.querySelector(".wrapper-computer h2").classList.remove("translateX-50");
+	symbolWaiting.classList.remove("display-none");
+	pickPlayer.classList.remove("translateX-neg50");
+	pickComputer.classList.remove("translateX-50");
 	resultDiv.classList.remove("display-block");
-	score.classList.remove("text-scale-animation");
+	score.classList.remove("symbol__text-animation");
 
-	document.querySelector(".pick-player").remove();
-	document.querySelector(".pick-computer").remove();
+	document.querySelector(".pick--player .symbol").remove();
+	document.querySelector(".pick--computer .symbol").remove();
+
+	document.querySelectorAll(".main__pick").forEach(el => {
+		if(el.classList.contains("get-above")){
+			el.classList.remove("get-above");
+		}
+
+		if(el.classList.contains("get-below")){
+			el.classList.remove("get-below");
+		}
+	});
 };
 
 /////////// MODAL ///////////////////
-const btnRules = document.querySelector(".btn-rules");
-const btnClose = document.querySelector(".btn-close");
+const btnRules = document.querySelector(".btn--rules");
+const btnClose = document.querySelector(".modal__close");
 const modalDiv = document.querySelector(".modal");
-const modalRulesDiv = document.querySelector(".modal-rules");
+const modalRulesDiv = document.querySelector(".modal__rules");
 
 btnRules.addEventListener("click", () => {
 	modalDiv.classList.add("display-flex");
 	setTimeout(() => {
-		modalDiv.classList.add("modal-background");
-		modalRulesDiv.classList.add("modal-rules-translate");
+		modalDiv.classList.add("modal__background");
+		modalRulesDiv.classList.add("modal__rules--translate");
 	
 	}, 50)
 });
 
 btnClose.addEventListener("click", () => {
-	modalDiv.classList.remove("modal-background");
-	modalRulesDiv.classList.remove("modal-rules-translate");
+	modalDiv.classList.remove("modal__background");
+	modalRulesDiv.classList.remove("modal__rules--translate");
 	setTimeout(()=> {
 		modalDiv.classList.remove("display-flex");
 	}, 250)

@@ -13,135 +13,146 @@
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 <body>
+  
+  <!-- Modal -->
   <section class="modal">
-    <div class="modal-rules">
+    <div class="modal__rules">
       <h2>Rules</h2>
-      <div class="btn-close">
-        <div class="line"></div>
+      <div class="modal__close">
+        <div class="modal__line"></div>
       </div>
-      <img src="images/image-rules-bonus.svg" alt="Rules">
+      <div class="modal__img">
+        <img src="images/image-rules-bonus.svg" alt="Rules">
+      </div>
     </div>
   </section>
 
-  <div class="wrapper">
-    <header>
-      <div class="container header-wrapper">
-        <div class="logo">
-          <img src="images/logo-bonus.svg" class="logo" alt="Rock, Paper, Scissors">
-        </div>
-        <div class="score">
-          <p>Score</p>
-          <p class="count">0</p>
-        </div>
+  <div class="body__wrapper">
+  <!-- Header -->
+  <header class="header container">
+    <div class="header__wrapper">
+      <div class="header__logo">
+        <!--<img src="images/logo-bonus.svg" alt="Rock, Paper, Scissors">-->
       </div>
-    </header>
+      <div class="header__score">
+        <p class="header__score-title">Score</p>
+        <p class="header__score-count">0</p>
+      </div>  
+    </div> 
+  </header>
+
+  <main class="main container">
     
-    <main>
-      <div class="container">
-        <div class="symbols">
-         
-          <div class="symbol-outer-circle symbol-scissors symbol-selection scissors-selection" title="Scissors">
-            <div class="symbol-wrapper">
-              <div class="symbol-inner-circle">
-                <img src="images/icon-scissors.svg" alt="Scissors">
-              </div>  
-            </div>  
-          </div>
-          
-          <div class="symbol-outer-circle symbol-selection symbol-spock spock-selection" title="Spock">
-            <div class="symbol-wrapper">
-              <div class="symbol-inner-circle">
-                <img src="images/icon-spock.svg" alt="Spock">
-              </div>   
-            </div>  
-          </div>
-
-          <div class="symbol-outer-circle symbol-selection symbol-paper paper-selection" title="Paper">
-            <div class="symbol-wrapper">
-              <div class="symbol-inner-circle">
-                <img src="images/icon-paper.svg" alt="Paper">
-              </div>   
-            </div>  
-          </div>     
-
-          <div class="symbol-outer-circle symbol-selection symbol-lizard lizard-selection" title="Lizard">
-            <div class="symbol-wrapper">
-              <div class="symbol-inner-circle">
-               <img src="images/icon-lizard.svg" alt="Lizard">
-              </div>  
-            </div>  
-          </div>    
-
-          <div class="symbol-outer-circle symbol-selection symbol-rock rock-selection" title="Rock">
-            <div class="symbol-wrapper">
-              <div class="symbol-inner-circle">
-                <img src="images/icon-rock.svg" alt="Rock">
-              </div>  
-            </div>  
-          </div>   
-
-        </div>
-      </div>
-
-        <div class="picked">
-          <div class="pick-wrapper wrapper-player">
-            <h2>You Picked</h2>
-           
-            <!--<div class="pick pick-player">
-              <div class="symbol-outer-circle symbol-picked symbol-scissors" title="Scissors">
-                <div class="circle1"></div>
-                <div class="circle2"></div>
-                <div class="circle3"></div>
-                <div class="symbol-wrapper">
-                  <div class="symbol-text">Scissors</div>
-                  <div class="symbol-inner-circle">
-                    <img src="images/icon-scissors.svg">
-                  </div>  
-                </div> 
-              </div>  
-            </div>-->
-
-          </div>  
-
-          <div class="result">
-            <h1>You lose</h1>
-            <button class="btn btn-playagain">Play again</button>
-          </div>
-
-          <div class="pick-wrapper wrapper-computer">
-            <h2>The House Picked</h2>
-            
-            <div class="pick pick-default">
-              <div class="symbol-outer-circle symbol-picked">
-                <div class="symbol-default"></div>
-              </div> 
+    <!-- Symbols - selection -->
+    <div class="main__symbols-wrapper">
+      <div class="main__symbols">
+        
+        <div class="symbol symbol--scissors symbol--scissors-selection" title="Scissors">
+          <div class="symbol__outer-circle">
+            <div class="symbol__inner-circle">
+              <img src="images/icon-scissors.svg" alt="Scissors">
             </div>
+          </div>
+        </div>
 
-            <!--<div class="pick pick-computer">
-              <div class="symbol-outer-circle symbol-picked symbol-rock" title="Rock">
-                <div class="symbol-wrapper">
-                  <div class="symbol-inner-circle">
-                    <img src="images/icon-rock.svg">
-                  </div>  
-                </div> 
-              </div>
-            </div>-->           
-              
-          </div>  
+        <div class="symbol symbol--spock symbol--spock-selection" title="Spock">
+          <div class="symbol__outer-circle">
+            <div class="symbol__inner-circle">
+              <img src="images/icon-spock.svg" alt="Spock">
+            </div>
+          </div>         
         </div>
-      <!--</div>-->  
-    </main>
-    <div class="bottom"></div>
-  </div>  
-    <footer>
-      <div class="footer-wrapper">
-        <div class="attribution">
-          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-          Coded by <a href="#">Your Name Here</a>.
+
+        <div class="symbol symbol--paper symbol--paper-selection" title="Paper">
+           <div class="symbol__outer-circle">
+            <div class="symbol__inner-circle">
+              <img src="images/icon-paper.svg" alt="Paper">
+            </div>
+          </div>           
         </div>
-        <button class="btn btn-rules">Rules</button>
+
+        <div class="symbol symbol--lizard symbol--lizard-selection" title="Lizard">
+          <div class="symbol__outer-circle">
+            <div class="symbol__inner-circle">
+              <img src="images/icon-lizard.svg" alt="Lizard">
+            </div>
+          </div>            
+        </div>
+
+        <div class="symbol symbol--rock symbol--rock-selection" title="Rock">
+          <div class="symbol__outer-circle">
+            <div class="symbol__inner-circle">
+              <img src="images/icon-rock.svg" alt="Rock">
+            </div>
+          </div>            
+        </div>
+      </div>  
+         
+    </div> 
+    
+    <!-- Symbols - picked -->
+    <div class="main__picked-wrapper">
+      <div class="main__pick pick--player">
+        <h2 class="title title--pick">You Picked</h2>
+        <div class="symbol__wrapper">
+          
+        </div>
+        <!--<div class="symbol symbol--scissors symbol--picked symbol--player-position">
+          <div class="symbol__outer-circle">
+            <div class="symbol__inner-circle">
+              <img src="images/icon-scissors.svg" alt="Scissors">
+            </div>
+          </div>
+        </div>-->
+      
       </div>
-    </footer>   
+      
+      <div class="main__pick pick--computer">
+        <h2 class="title title--pick">The House Picked</h2>
+        <div class="symbol__wrapper">
+          
+          <div class="symbol__waiting"></div>
+          
+          
+          <!--
+          <div class="symbol symbol--lizard symbol--picked">   
+            <div class="symbol__winner-circle-1"></div>
+            <div class="symbol__winner-circle-2"></div>
+            <div class="symbol__winner-circle-3"></div>    
+            <div class="symbol__text">Scissors</div>  
+            <div class="symbol__outer-circle">
+              <div class="symbol__inner-circle">
+                <img src="images/icon-lizard.svg" alt="Lizard">
+              </div>
+            </div>                     
+          </div>-->
+
+        </div>
+     
+      </div>
+
+      <div class="main__result">
+        <h1 class="title title--h1">You lose</h1>
+        <button class="btn btn--playagain">Play again</button>       
+      </div>
+    
+    </div>
+    
+    <!--</div>-->
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__wrapper">
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="#">Your Name Here</a>.
+      </div>
+      <button class="btn btn--rules">Rules</button>
+    </div>
+  </footer>
+</div>
+
   <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
